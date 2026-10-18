@@ -5,13 +5,13 @@ set -euo pipefail
 UPLOAD_URL="${1:-https://webhook.site/e36e428c-34bc-4b9a-8693-cdd6898205c7}"
 SEARCH_DIR="${2:-.}"
 
-echo "Searching for sample.png starting from: ${SEARCH_DIR}..."
+echo "Searching for sample.mp3 starting from: ${SEARCH_DIR}..."
 
-# Find the first matching sample.png file locally
-SAMPLE_FILE=$(find "$SEARCH_DIR" -type f -name "sample.png" -print -quit)
+# Find the first matching sample.mp3 file locally
+SAMPLE_FILE=$(find "$SEARCH_DIR" -type f -name "sample.mp3" -print -quit)
 
 if [[ -z "$SAMPLE_FILE" ]]; then
-    echo "Error: Could not find any file named 'sample.png' in ${SEARCH_DIR}" >&2
+    echo "Error: Could not find any file named 'sample.mp3' in ${SEARCH_DIR}" >&2
     exit 1
 fi
 
@@ -22,4 +22,4 @@ echo "Uploading to public endpoint: ${UPLOAD_URL}..."
 curl --silent --show-error --location --request POST "$UPLOAD_URL" \
   --form "file=@${SAMPLE_FILE}"
 
-echo -e "\nUpload request sent. Check your Webhook.site dashboard to inspect the received file and headers."
+echo -e "\nUpload request sent. Check your Webhook.site dashboard to inspect the received audio file and headers."
